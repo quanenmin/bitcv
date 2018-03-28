@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scrapy.mapper.ProjSocialMapper">
+    <resultMap id="BaseResultMap" type="com.scrapy.entity.ProjSocial">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="proj_id" jdbcType="INTEGER" property="projId"/>
+        <result column="social_id" jdbcType="INTEGER" property="socialId"/>
+        <result column="link_url" jdbcType="VARCHAR" property="linkUrl"/>
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt"/>
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt"/>
+        <result column="refer_url" jdbcType="VARCHAR" property="referUrl"/>
+        <result column="title" jdbcType="VARCHAR" property="title"/>
+        <result column="official_name" jdbcType="VARCHAR" property="officialName"/>
+        <result column="logo_url" jdbcType="VARCHAR" property="logoUrl"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+    </resultMap>
+    <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.scrapy.entity.ProjSocial">
+        <result column="content" jdbcType="LONGVARCHAR" property="content"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+      id, proj_id, social_id, link_url, created_at, updated_at, refer_url, title, official_name,
+      logo_url, status
+    </sql>
+    <sql id="Blob_Column_List">
+      content
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+        select
+        <include refid="Base_Column_List"/>
+        ,
+        <include refid="Blob_Column_List"/>
+        from proj_social
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+      delete from proj_social
+      where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.scrapy.entity.ProjSocial">
+      insert into proj_social (id, proj_id, social_id,
+        link_url, created_at, updated_at,
+        refer_url, title, official_name,
+        logo_url, status, content
+        )
+      values (#{id,jdbcType=INTEGER}, #{projId,jdbcType=INTEGER}, #{socialId,jdbcType=INTEGER},
+        #{linkUrl,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP},
+        #{referUrl,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{officialName,jdbcType=VARCHAR},
+        #{logoUrl,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, #{content,jdbcType=LONGVARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="com.scrapy.entity.ProjSocial">
+        insert into proj_social
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="projId != null">
+                proj_id,
+            </if>
+            <if test="socialId != null">
+                social_id,
+            </if>
+            <if test="linkUrl != null">
+                link_url,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+            <if test="referUrl != null">
+                refer_url,
+            </if>
+            <if test="title != null">
+                title,
+            </if>
+            <if test="officialName != null">
+                official_name,
+            </if>
+            <if test="logoUrl != null">
+                logo_url,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="projId != null">
+                #{projId,jdbcType=INTEGER},
+            </if>
+            <if test="socialId != null">
+                #{socialId,jdbcType=INTEGER},
+            </if>
+            <if test="linkUrl != null">
+                #{linkUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="referUrl != null">
+                #{referUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="officialName != null">
+                #{officialName,jdbcType=VARCHAR},
+            </if>
+            <if test="logoUrl != null">
+                #{logoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.scrapy.entity.ProjSocial">
+        update proj_social
+        <set>
+            <if test="projId != null">
+                proj_id = #{projId,jdbcType=INTEGER},
+            </if>
+            <if test="socialId != null">
+                social_id = #{socialId,jdbcType=INTEGER},
+            </if>
+            <if test="linkUrl != null">
+                link_url = #{linkUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="referUrl != null">
+                refer_url = #{referUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="title != null">
+                title = #{title,jdbcType=VARCHAR},
+            </if>
+            <if test="officialName != null">
+                official_name = #{officialName,jdbcType=VARCHAR},
+            </if>
+            <if test="logoUrl != null">
+                logo_url = #{logoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=LONGVARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.scrapy.entity.ProjSocial">
+      update proj_social
+      set proj_id = #{projId,jdbcType=INTEGER},
+        social_id = #{socialId,jdbcType=INTEGER},
+        link_url = #{linkUrl,jdbcType=VARCHAR},
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+        refer_url = #{referUrl,jdbcType=VARCHAR},
+        title = #{title,jdbcType=VARCHAR},
+        official_name = #{officialName,jdbcType=VARCHAR},
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+        status = #{status,jdbcType=TINYINT},
+        content = #{content,jdbcType=LONGVARCHAR}
+      where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.scrapy.entity.ProjSocial">
+      update proj_social
+      set proj_id = #{projId,jdbcType=INTEGER},
+        social_id = #{socialId,jdbcType=INTEGER},
+        link_url = #{linkUrl,jdbcType=VARCHAR},
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+        refer_url = #{referUrl,jdbcType=VARCHAR},
+        title = #{title,jdbcType=VARCHAR},
+        official_name = #{officialName,jdbcType=VARCHAR},
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+        status = #{status,jdbcType=TINYINT}
+      where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>

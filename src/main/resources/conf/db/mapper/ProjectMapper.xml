@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.scrapy.mapper.ProjectMapper">
+    <resultMap id="BaseResultMap" type="com.scrapy.entity.Project">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name_cn" jdbcType="VARCHAR" property="nameCn"/>
+        <result column="name_en" jdbcType="VARCHAR" property="nameEn"/>
+        <result column="short_desc" jdbcType="VARCHAR" property="shortDesc"/>
+        <result column="logo_url" jdbcType="VARCHAR" property="logoUrl"/>
+        <result column="banner_url" jdbcType="VARCHAR" property="bannerUrl"/>
+        <result column="abstract" jdbcType="VARCHAR" property="abstractInfo"/>
+        <result column="white_paper_url" jdbcType="VARCHAR" property="whitePaperUrl"/>
+        <result column="home_url" jdbcType="VARCHAR" property="homeUrl"/>
+        <result column="view_times" jdbcType="INTEGER" property="viewTimes"/>
+        <result column="token_id" jdbcType="INTEGER" property="tokenId"/>
+        <result column="plan_amount" jdbcType="VARCHAR" property="planAmount"/>
+        <result column="node_amount" jdbcType="VARCHAR" property="nodeAmount"/>
+        <result column="cur_amount" jdbcType="VARCHAR" property="curAmount"/>
+        <result column="status" jdbcType="TINYINT" property="status"/>
+        <result column="found_date" jdbcType="TIMESTAMP" property="foundDate"/>
+        <result column="admin_id" jdbcType="INTEGER" property="adminId"/>
+        <result column="region" jdbcType="INTEGER" property="region"/>
+        <result column="buz_type" jdbcType="TINYINT" property="buzType"/>
+        <result column="stage" jdbcType="TINYINT" property="stage"/>
+        <result column="fund_stage" jdbcType="TINYINT" property="fundStage"/>
+        <result column="fund_start_time" jdbcType="TIMESTAMP" property="fundStartTime"/>
+        <result column="fund_end_time" jdbcType="TIMESTAMP" property="fundEndTime"/>
+        <result column="company_email" jdbcType="VARCHAR" property="companyEmail"/>
+        <result column="company_addr" jdbcType="VARCHAR" property="companyAddr"/>
+        <result column="created_at" jdbcType="TIMESTAMP" property="createdAt"/>
+        <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt"/>
+        <result column="wallet_addr" jdbcType="VARCHAR" property="walletAddr"/>
+        <result column="wallet_id" jdbcType="INTEGER" property="walletId"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    id, name_cn, name_en, short_desc, logo_url, banner_url, abstract, white_paper_url, 
+    home_url, view_times, token_id, plan_amount, node_amount, cur_amount, status, found_date, 
+    admin_id, region, buz_type, stage, fund_stage, fund_start_time, fund_end_time, company_email, 
+    company_addr, created_at, updated_at, wallet_addr, wallet_id
+  </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from project
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from project
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.scrapy.entity.Project">
+    insert into project (id, name_cn, name_en, 
+      short_desc, logo_url, banner_url, 
+      abstract, white_paper_url, home_url, 
+      view_times, token_id, plan_amount, 
+      node_amount, cur_amount, status, 
+      found_date, admin_id, region, 
+      buz_type, stage, fund_stage, 
+      fund_start_time, fund_end_time, company_email, 
+      company_addr, created_at, updated_at, 
+      wallet_addr, wallet_id)
+    values (#{id,jdbcType=INTEGER}, #{nameCn,jdbcType=VARCHAR}, #{nameEn,jdbcType=VARCHAR}, 
+      #{shortDesc,jdbcType=VARCHAR}, #{logoUrl,jdbcType=VARCHAR}, #{bannerUrl,jdbcType=VARCHAR}, 
+      #{abstract,jdbcType=VARCHAR}, #{whitePaperUrl,jdbcType=VARCHAR}, #{homeUrl,jdbcType=VARCHAR}, 
+      #{viewTimes,jdbcType=INTEGER}, #{tokenId,jdbcType=INTEGER}, #{planAmount,jdbcType=VARCHAR}, 
+      #{nodeAmount,jdbcType=VARCHAR}, #{curAmount,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{foundDate,jdbcType=TIMESTAMP}, #{adminId,jdbcType=INTEGER}, #{region,jdbcType=INTEGER}, 
+      #{buzType,jdbcType=TINYINT}, #{stage,jdbcType=TINYINT}, #{fundStage,jdbcType=TINYINT}, 
+      #{fundStartTime,jdbcType=TIMESTAMP}, #{fundEndTime,jdbcType=TIMESTAMP}, #{companyEmail,jdbcType=VARCHAR}, 
+      #{companyAddr,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP}, 
+      #{walletAddr,jdbcType=VARCHAR}, #{walletId,jdbcType=INTEGER})
+  </insert>
+    <insert id="insertSelective" parameterType="com.scrapy.entity.Project">
+        insert into project
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="nameCn != null">
+                name_cn,
+            </if>
+            <if test="nameEn != null">
+                name_en,
+            </if>
+            <if test="shortDesc != null">
+                short_desc,
+            </if>
+            <if test="logoUrl != null">
+                logo_url,
+            </if>
+            <if test="bannerUrl != null">
+                banner_url,
+            </if>
+            <if test="abstract != null">
+                abstract,
+            </if>
+            <if test="whitePaperUrl != null">
+                white_paper_url,
+            </if>
+            <if test="homeUrl != null">
+                home_url,
+            </if>
+            <if test="viewTimes != null">
+                view_times,
+            </if>
+            <if test="tokenId != null">
+                token_id,
+            </if>
+            <if test="planAmount != null">
+                plan_amount,
+            </if>
+            <if test="nodeAmount != null">
+                node_amount,
+            </if>
+            <if test="curAmount != null">
+                cur_amount,
+            </if>
+            <if test="status != null">
+                status,
+            </if>
+            <if test="foundDate != null">
+                found_date,
+            </if>
+            <if test="adminId != null">
+                admin_id,
+            </if>
+            <if test="region != null">
+                region,
+            </if>
+            <if test="buzType != null">
+                buz_type,
+            </if>
+            <if test="stage != null">
+                stage,
+            </if>
+            <if test="fundStage != null">
+                fund_stage,
+            </if>
+            <if test="fundStartTime != null">
+                fund_start_time,
+            </if>
+            <if test="fundEndTime != null">
+                fund_end_time,
+            </if>
+            <if test="companyEmail != null">
+                company_email,
+            </if>
+            <if test="companyAddr != null">
+                company_addr,
+            </if>
+            <if test="createdAt != null">
+                created_at,
+            </if>
+            <if test="updatedAt != null">
+                updated_at,
+            </if>
+            <if test="walletAddr != null">
+                wallet_addr,
+            </if>
+            <if test="walletId != null">
+                wallet_id,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="nameCn != null">
+                #{nameCn,jdbcType=VARCHAR},
+            </if>
+            <if test="nameEn != null">
+                #{nameEn,jdbcType=VARCHAR},
+            </if>
+            <if test="shortDesc != null">
+                #{shortDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="logoUrl != null">
+                #{logoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="bannerUrl != null">
+                #{bannerUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="abstract != null">
+                #{abstract,jdbcType=VARCHAR},
+            </if>
+            <if test="whitePaperUrl != null">
+                #{whitePaperUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="homeUrl != null">
+                #{homeUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="viewTimes != null">
+                #{viewTimes,jdbcType=INTEGER},
+            </if>
+            <if test="tokenId != null">
+                #{tokenId,jdbcType=INTEGER},
+            </if>
+            <if test="planAmount != null">
+                #{planAmount,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeAmount != null">
+                #{nodeAmount,jdbcType=VARCHAR},
+            </if>
+            <if test="curAmount != null">
+                #{curAmount,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                #{status,jdbcType=TINYINT},
+            </if>
+            <if test="foundDate != null">
+                #{foundDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="adminId != null">
+                #{adminId,jdbcType=INTEGER},
+            </if>
+            <if test="region != null">
+                #{region,jdbcType=INTEGER},
+            </if>
+            <if test="buzType != null">
+                #{buzType,jdbcType=TINYINT},
+            </if>
+            <if test="stage != null">
+                #{stage,jdbcType=TINYINT},
+            </if>
+            <if test="fundStage != null">
+                #{fundStage,jdbcType=TINYINT},
+            </if>
+            <if test="fundStartTime != null">
+                #{fundStartTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fundEndTime != null">
+                #{fundEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="companyEmail != null">
+                #{companyEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="companyAddr != null">
+                #{companyAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="createdAt != null">
+                #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="walletAddr != null">
+                #{walletAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="walletId != null">
+                #{walletId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.scrapy.entity.Project">
+        update project
+        <set>
+            <if test="nameCn != null">
+                name_cn = #{nameCn,jdbcType=VARCHAR},
+            </if>
+            <if test="nameEn != null">
+                name_en = #{nameEn,jdbcType=VARCHAR},
+            </if>
+            <if test="shortDesc != null">
+                short_desc = #{shortDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="logoUrl != null">
+                logo_url = #{logoUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="bannerUrl != null">
+                banner_url = #{bannerUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="abstract != null">
+                abstract = #{abstract,jdbcType=VARCHAR},
+            </if>
+            <if test="whitePaperUrl != null">
+                white_paper_url = #{whitePaperUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="homeUrl != null">
+                home_url = #{homeUrl,jdbcType=VARCHAR},
+            </if>
+            <if test="viewTimes != null">
+                view_times = #{viewTimes,jdbcType=INTEGER},
+            </if>
+            <if test="tokenId != null">
+                token_id = #{tokenId,jdbcType=INTEGER},
+            </if>
+            <if test="planAmount != null">
+                plan_amount = #{planAmount,jdbcType=VARCHAR},
+            </if>
+            <if test="nodeAmount != null">
+                node_amount = #{nodeAmount,jdbcType=VARCHAR},
+            </if>
+            <if test="curAmount != null">
+                cur_amount = #{curAmount,jdbcType=VARCHAR},
+            </if>
+            <if test="status != null">
+                status = #{status,jdbcType=TINYINT},
+            </if>
+            <if test="foundDate != null">
+                found_date = #{foundDate,jdbcType=TIMESTAMP},
+            </if>
+            <if test="adminId != null">
+                admin_id = #{adminId,jdbcType=INTEGER},
+            </if>
+            <if test="region != null">
+                region = #{region,jdbcType=INTEGER},
+            </if>
+            <if test="buzType != null">
+                buz_type = #{buzType,jdbcType=TINYINT},
+            </if>
+            <if test="stage != null">
+                stage = #{stage,jdbcType=TINYINT},
+            </if>
+            <if test="fundStage != null">
+                fund_stage = #{fundStage,jdbcType=TINYINT},
+            </if>
+            <if test="fundStartTime != null">
+                fund_start_time = #{fundStartTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="fundEndTime != null">
+                fund_end_time = #{fundEndTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="companyEmail != null">
+                company_email = #{companyEmail,jdbcType=VARCHAR},
+            </if>
+            <if test="companyAddr != null">
+                company_addr = #{companyAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="createdAt != null">
+                created_at = #{createdAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updatedAt != null">
+                updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+            </if>
+            <if test="walletAddr != null">
+                wallet_addr = #{walletAddr,jdbcType=VARCHAR},
+            </if>
+            <if test="walletId != null">
+                wallet_id = #{walletId,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.scrapy.entity.Project">
+        update project
+        set name_cn = #{nameCn,jdbcType=VARCHAR},
+        name_en = #{nameEn,jdbcType=VARCHAR},
+        short_desc = #{shortDesc,jdbcType=VARCHAR},
+        logo_url = #{logoUrl,jdbcType=VARCHAR},
+        banner_url = #{bannerUrl,jdbcType=VARCHAR},
+        abstract = #{abstract,jdbcType=VARCHAR},
+        white_paper_url = #{whitePaperUrl,jdbcType=VARCHAR},
+        home_url = #{homeUrl,jdbcType=VARCHAR},
+        view_times = #{viewTimes,jdbcType=INTEGER},
+        token_id = #{tokenId,jdbcType=INTEGER},
+        plan_amount = #{planAmount,jdbcType=VARCHAR},
+        node_amount = #{nodeAmount,jdbcType=VARCHAR},
+        cur_amount = #{curAmount,jdbcType=VARCHAR},
+        status = #{status,jdbcType=TINYINT},
+        found_date = #{foundDate,jdbcType=TIMESTAMP},
+        admin_id = #{adminId,jdbcType=INTEGER},
+        region = #{region,jdbcType=INTEGER},
+        buz_type = #{buzType,jdbcType=TINYINT},
+        stage = #{stage,jdbcType=TINYINT},
+        fund_stage = #{fundStage,jdbcType=TINYINT},
+        fund_start_time = #{fundStartTime,jdbcType=TIMESTAMP},
+        fund_end_time = #{fundEndTime,jdbcType=TIMESTAMP},
+        company_email = #{companyEmail,jdbcType=VARCHAR},
+        company_addr = #{companyAddr,jdbcType=VARCHAR},
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+        wallet_addr = #{walletAddr,jdbcType=VARCHAR},
+        wallet_id = #{walletId,jdbcType=INTEGER}
+      where id = #{id,jdbcType=INTEGER}
+    </update>
+</mapper>
